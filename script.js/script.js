@@ -197,9 +197,9 @@ function renderingInterview() {
                 <p class="notes">${interview.notes}</p>
                 <div class="flex  gap-3">
                     <button
-                        class="interview-btn  text-green-500  border border-green-500 py-3 px-8 rounded-2xl cursor-pointer">INTERVIEW</button>
+                        class="interview-btn  text-green-500  border border-green-500 py-3 px-4 md:px-8 rounded-2xl cursor-pointer">INTERVIEW</button>
                     <button
-                        class="rejected-btn text-red-500 border border-red-500  py-3 px-8 rounded-2xl cursor-pointer">REJECTED</button>
+                        class="rejected-btn text-red-500 border border-red-500  py-3 px-4 md:px-8 rounded-2xl cursor-pointer">REJECTED</button>
                 </div>
 
 
@@ -230,9 +230,9 @@ function renderingRejected() {
                 <p class="notes">${rejected.notes}</p>
                 <div class="flex  gap-3">
                     <button
-                        class="interview-btn  text-green-500  border border-green-500 py-3 px-8 rounded-2xl cursor-pointer">INTERVIEW</button>
+                        class="interview-btn  text-green-500  border border-green-500 py-3 px-4 md:px-8 rounded-2xl cursor-pointer">INTERVIEW</button>
                     <button
-                        class="rejected-btn text-red-500 border border-red-500  py-3 px-8 rounded-2xl cursor-pointer">REJECTED</button>
+                        class="rejected-btn text-red-500 border border-red-500  py-3 px-4 md:px-8 rounded-2xl cursor-pointer">REJECTED</button>
                 </div>
 
 
@@ -255,26 +255,26 @@ allCardSection.addEventListener('click', function (card) {
     }
 
 });
-interviewSection.addEventListener('click', function (card) {
+// interviewSection.addEventListener('click', function (card) {
 
-    if (card.target.classList.contains('delete-card-btn')) {
+//     if (card.target.classList.contains('delete-card-btn')) {
 
-        const deleteCard = card.target.closest('.card');
-        deleteCard.remove();
-        calculateCount();
-    }
+//         const deleteCard = card.target.closest('.card');
+//         deleteCard.remove();
+//         calculateCount();
+//     }
 
-});
-rejectedSection.addEventListener('click', function (card) {
+// });
+// rejectedSection.addEventListener('click', function (card) {
 
-    if (card.target.classList.contains('delete-card-btn')) {
+//     if (card.target.classList.contains('delete-card-btn')) {
 
-        const deleteCard = card.target.closest('.card');
-        deleteCard.remove();
-        calculateCount();
-    }
+//         const deleteCard = card.target.closest('.card');
+//         deleteCard.remove();
+//         calculateCount();
+//     }
 
-});
+// });
 
 
 //     if (card.target.classList.contains('delete-card-btn')) {
