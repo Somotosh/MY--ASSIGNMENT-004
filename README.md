@@ -9,15 +9,15 @@
 
 
 ### 2. How do you create and insert a new element into the DOM?
-# This is done in 3 steps. 
+ This is done in 3 steps. 
 
-# Step 1: Create a new div element.
+ Step 1: Create a new div element.
 let newDiv = document.createElement("div");
 
-# Step 2: Now add the text inside the div.
+ Step 2: Now add the text inside the div.
 createDiv.innerText = "hello world";
 
-# Step 3: Now the element needs to be inserted inside a parent.
+ Step 3: Now the element needs to be inserted inside a parent.
 document.body.appendChild(newDiv);
 
 ### 3. What is Event Bubbling? And how does it work?
