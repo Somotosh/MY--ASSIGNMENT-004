@@ -265,6 +265,16 @@ interviewSection.addEventListener('click', function (card) {
     }
 
 });
+rejectedSection.addEventListener('click', function (card) {
+
+    if (card.target.classList.contains('delete-card-btn')) {
+
+        const deleteCard = card.target.closest('.card');
+        deleteCard.remove();
+        calculateCount();
+    }
+
+});
 
 
 //     if (card.target.classList.contains('delete-card-btn')) {
