@@ -1,17 +1,14 @@
 let interviewList = [];
 let rejectedList = [];
 let currentStatus = 'all'
-let allJobCounts = "all-jobs-btn"
+// let allJobCounts = "all-jobs-btn"
 
 
 let availableJobs = document.getElementById("available-jobs");
 
-
 let total = document.getElementById("totalCount");
 let interview = document.getElementById("interviewCount");
 let rejected = document.getElementById("rejectedCount");
-
-const deleteCard = document.querySelectorAll(".delete-card-btn")
 
 const allJobsBtn = document.getElementById('all-jobs-btn');
 const interviewJobsBtn = document.getElementById('interview-jobs-btn');
@@ -36,7 +33,7 @@ function JobCount() {
 function calculateCount() {
     total.innerHTML = allCardSection.children.length;
     availableJobs.innerHTML = allCardSection.children.length;
-    
+
     interview.innerText = interviewList.length;
 
     rejected.innerText = rejectedList.length;
@@ -63,7 +60,7 @@ function toggoleStyle(id) {
         allCardSection.classList.add('hidden');
         rejectedSection.classList.add('hidden')
         interviewSection.classList.remove('hidden');
-       
+
         renderingInterview();
         updateInterviewSection()
 
@@ -74,15 +71,15 @@ function toggoleStyle(id) {
         interviewSection.classList.add('hidden');
         rejectedSection.classList.add('hidden');
         noJobsSection.classList.add('hidden');
-       
-       
+
+
 
     }
     else if (id == 'rejected-jobs-btn') {
         allCardSection.classList.add('hidden');
         interviewSection.classList.add('hidden');
         rejectedSection.classList.remove('hidden');
-       
+
 
         renderingRejected();
         updateRejectedSection()
@@ -93,6 +90,20 @@ function toggoleStyle(id) {
 
 
 mainContainer.addEventListener("click", function (event) {
+    const deleteCard =event.target.closest('.delete-card-btn')
+    if(deleteCard){
+        const card = deleteCard.closest('.card')
+        const jobCompany =card.querySelector('.job-company').innerText
+        if(card.closest('#all-cards')){
+            interviewList =interviewList.filter(item => item.jobCompany !== jobCompany);
+            rejectedList =rejectedList.filter(item => item.jobCompany !== jobCompany);
+            card.remove()
+            calculateCount()
+        }
+        
+    }
+
+
 
     if (event.target.classList.contains('interview-btn')) {
         const parentNode = event.target.parentNode.parentNode;
@@ -113,6 +124,7 @@ mainContainer.addEventListener("click", function (event) {
             jobType,
             deletBtn,
             status: 'INTERVIEW',
+            statusColor: 'text-green-500',
             notes
 
         }
@@ -152,6 +164,7 @@ mainContainer.addEventListener("click", function (event) {
             jobType,
             deletBtn,
             status: 'REJECTED',
+            statusColor: 'text-red-500',
             notes
 
         }
@@ -193,7 +206,7 @@ function renderingInterview() {
                     </div>
                     <i class="delete-card-btn fa-regular fa-trash-can cursor-pointer"></i>
                 </div>
-                <p class="status bg-[#EEF4FF] w-[120px] p-2.5">${interview.status}</p>
+                <p class="status ${interview.statusColor} bg-[#EEF4FF] w-[120px] p-2.5">${interview.status}</p>
                 <p class="notes">${interview.notes}</p>
                 <div class="flex  gap-3">
                     <button
@@ -226,7 +239,7 @@ function renderingRejected() {
                     </div>
                     <i class="delete-card-btn fa-regular fa-trash-can cursor-pointer"></i>
                 </div>
-                <p class="status bg-[#EEF4FF] w-[120px] p-2.5">${rejected.status}</p>
+                <p class="status ${rejected.statusColor} bg-[#EEF4FF] w-[120px] p-2.5">${rejected.status}</p>
                 <p class="notes">${rejected.notes}</p>
                 <div class="flex  gap-3">
                     <button
@@ -245,55 +258,18 @@ function renderingRejected() {
 }
 
 
-allCardSection.addEventListener('click', function (card) {
-
-    if (card.target.classList.contains('delete-card-btn')) {
-
-        const deleteCard = card.target.closest('.card');
-        deleteCard.remove();
-        calculateCount();
-    }
-
-});
-// interviewSection.addEventListener('click', function (card) {
-
-//     if (card.target.classList.contains('delete-card-btn')) {
-
-//         const deleteCard = card.target.closest('.card');
-//         deleteCard.remove();
-//         calculateCount();
-//     }
-
-// });
-// rejectedSection.addEventListener('click', function (card) {
-
-//     if (card.target.classList.contains('delete-card-btn')) {
-
-//         const deleteCard = card.target.closest('.card');
-//         deleteCard.remove();
-//         calculateCount();
-//     }
-
-// });
 
 
-//     if (card.target.classList.contains('delete-card-btn')) {
-
-//         const deleteCard = card.target.closest('.card');
-//         deleteCard.remove();
-        
-        
-        
- 
-//     }
-   
-// });
 
 
-function updateInterviewSection() {
 
-    if (interviewList.length === 0) {
-        interviewSection.innerHTML = `
+
+
+
+    function updateInterviewSection() {
+
+        if (interviewList.length === 0) {
+            interviewSection.innerHTML = `
             <div class="bg-white mt-12 mb-12">
                 <div class="text-center space-y-2 py-14 ">
                     <img class="mx-auto" src="./jobs.png" alt="">
@@ -303,12 +279,12 @@ function updateInterviewSection() {
             </div>
         `
 
+        }
     }
-}
-function updateRejectedSection() {
+    function updateRejectedSection() {
 
-    if (rejectedList.length === 0) {
-        rejectedSection.innerHTML = `
+        if (rejectedList.length === 0) {
+            rejectedSection.innerHTML = `
             <div class="bg-white mt-12 mb-12">
                 <div class="text-center space-y-2 py-14">
                     <img class="mx-auto" src="./jobs.png" alt="">
@@ -318,6 +294,6 @@ function updateRejectedSection() {
             </div>
         `
 
+        }
     }
-}
 
