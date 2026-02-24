@@ -1,7 +1,7 @@
 let interviewList = [];
 let rejectedList = [];
 let currentStatus = 'all'
-// let allJobCounts = "all-jobs-btn"
+
 
 
 let availableJobs = document.getElementById("available-jobs");
@@ -20,15 +20,6 @@ const interviewSection = document.getElementById("interview-card");
 const rejectedSection = document.getElementById("rejected-card");
 const noJobsSection = document.getElementById("Nojobs")
 
-function JobCount() {
-    if (currentStatus === 'all-jobs-btn') {
-        allJobCounts.innerHTML = `<p><span>${allCardSection.children.length}</span> Jobs</p>`;
-    } else if (currentStatus === 'interview-jobs-btn') {
-        allJobCounts.innerHTML = `<p><span>${interviewList.length}</span> of ${allcards.children.length} Jobs</p>`;
-    } else if (currentStatus === 'rejected-jobs-btn') {
-        allJobCounts.innerHTML = `<p><span>${rejectedList.length}</span> of ${allcards.children.length} Jobs</p>`;
-    }
-}
 
 function calculateCount() {
     total.innerHTML = allCardSection.children.length;
@@ -99,8 +90,7 @@ mainContainer.addEventListener("click", function (event) {
             rejectedList =rejectedList.filter(item => item.jobCompany !== jobCompany);
             card.remove()
             calculateCount()
-        }
-        
+        } 
     }
 
 
@@ -257,15 +247,6 @@ function renderingRejected() {
 
 }
 
-
-
-
-
-
-
-
-
-
     function updateInterviewSection() {
 
         if (interviewList.length === 0) {
@@ -296,4 +277,8 @@ function renderingRejected() {
 
         }
     }
+
+
+
+
 
