@@ -3,7 +3,6 @@ let rejectedList = [];
 let currentStatus = 'all'
 
 
-
 let availableJobs = document.getElementById("available-jobs");
 
 let total = document.getElementById("totalCount");
@@ -61,9 +60,8 @@ function toggoleStyle(id) {
         allCardSection.classList.remove('hidden');
         interviewSection.classList.add('hidden');
         rejectedSection.classList.add('hidden');
-        noJobsSection.classList.add('hidden');
-
-
+         updateAllSection()
+        
 
     }
     else if (id == 'rejected-jobs-btn') {
@@ -81,20 +79,20 @@ function toggoleStyle(id) {
 
 
 mainContainer.addEventListener("click", function (event) {
-    const deleteCard =event.target.closest('.delete-card-btn')
-    if(deleteCard){
+    const deleteCard = event.target.closest('.delete-card-btn')
+    if (deleteCard) {
         const card = deleteCard.closest('.card')
-        const jobCompany =card.querySelector('.job-company').innerText
-        if(card.closest('#all-cards')){
-            interviewList =interviewList.filter(item => item.jobCompany !== jobCompany);
-            rejectedList =rejectedList.filter(item => item.jobCompany !== jobCompany);
+        const jobCompany = card.querySelector('.job-company').innerText
+        if (card.closest('#all-cards')) {
+            interviewList = interviewList.filter(item => item.jobCompany !== jobCompany);
+            rejectedList = rejectedList.filter(item => item.jobCompany !== jobCompany);
             card.remove()
             calculateCount()
-        } 
+        }
     }
-
-
-
+    if(allJobsBtn){
+        updateAllSection()
+    }
     if (event.target.classList.contains('interview-btn')) {
         const parentNode = event.target.parentNode.parentNode;
         const jobCompany = parentNode.querySelector(".job-company").innerText;
@@ -176,8 +174,7 @@ mainContainer.addEventListener("click", function (event) {
         calculateCount();
         // renderingRejected();
     }
-
-
+    
 })
 
 
@@ -247,25 +244,11 @@ function renderingRejected() {
 
 }
 
-    function updateInterviewSection() {
 
-        if (interviewList.length === 0) {
-            interviewSection.innerHTML = `
-            <div class="bg-white mt-12 mb-12">
-                <div class="text-center space-y-2 py-14 ">
-                    <img class="mx-auto" src="./jobs.png" alt="">
-                    <h2>No jobs available</h2>
-                    <p>Check back soon for new job opportunities</p>
-                </div>
-            </div>
-        `
+function updateAllSection() {
 
-        }
-    }
-    function updateRejectedSection() {
-
-        if (rejectedList.length === 0) {
-            rejectedSection.innerHTML = `
+    if (allCardSection.children.length === 0) {
+        allCardSection.innerHTML = `
             <div class="bg-white mt-12 mb-12">
                 <div class="text-center space-y-2 py-14">
                     <img class="mx-auto" src="./jobs.png" alt="">
@@ -275,8 +258,39 @@ function renderingRejected() {
             </div>
         `
 
-        }
     }
+}
+function updateInterviewSection() {
+
+    if (interviewList.length === 0) {
+        interviewSection.innerHTML = `
+            <div class="bg-white mt-12 mb-12">
+                <div class="text-center space-y-2 py-14 ">
+                    <img class="mx-auto" src="./jobs.png" alt="">
+                    <h2>No jobs available</h2>
+                    <p>Check back soon for new job opportunities</p>
+                </div>
+            </div>
+        `
+
+    }
+}
+function updateRejectedSection() {
+
+    if (rejectedList.length === 0) {
+        rejectedSection.innerHTML = `
+            <div class="bg-white mt-12 mb-12">
+                <div class="text-center space-y-2 py-14">
+                    <img class="mx-auto" src="./jobs.png" alt="">
+                    <h2>No jobs available</h2>
+                    <p>Check back soon for new job opportunities</p>
+                </div>
+            </div>
+        `
+
+    }
+}
+
 
 
 
