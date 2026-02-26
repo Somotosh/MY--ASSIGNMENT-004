@@ -4,6 +4,9 @@ let currentStatus = 'all'
 
 
 let availableJobs = document.getElementById("available-jobs");
+let interviewActiveJobs =document.getElementById('active-job');
+let rejectedActiveJobs =document.getElementById('rejected-avtive-jobs');
+let jobsOf = document.getElementById('jobs-of');
 
 let total = document.getElementById("totalCount");
 let interview = document.getElementById("interviewCount");
@@ -25,8 +28,12 @@ function calculateCount() {
     availableJobs.innerHTML = allCardSection.children.length;
 
     interview.innerText = interviewList.length;
+    interviewActiveJobs.innerText=interviewList.length;
+    
 
     rejected.innerText = rejectedList.length;
+    rejectedActiveJobs.innerText=rejectedList.length
+    
 
 }
 calculateCount()
@@ -41,6 +48,10 @@ function toggoleStyle(id) {
     interviewJobsBtn.classList.remove('bg-blue-500', 'text-white');
     rejectedJobsBtn.classList.remove('bg-blue-500', 'text-white');
 
+    interviewActiveJobs.classList.add('hidden');
+    rejectedActiveJobs.classList.add('hidden')
+    jobsOf.classList.add('hidden')
+
     const selected = document.getElementById(id);
     currentStatus = id
     selected.classList.remove('bg-white', 'text-black');
@@ -50,7 +61,9 @@ function toggoleStyle(id) {
         allCardSection.classList.add('hidden');
         rejectedSection.classList.add('hidden')
         interviewSection.classList.remove('hidden');
-
+        interviewActiveJobs.classList.remove('hidden');
+        rejectedActiveJobs.classList.add('hidden');
+        jobsOf.classList.remove('hidden');
         renderingInterview();
         updateInterviewSection()
 
@@ -58,18 +71,21 @@ function toggoleStyle(id) {
 
     else if (id == 'all-jobs-btn') {
         allCardSection.classList.remove('hidden');
+         allAvailablejobs.classList.remove('hidden')
         interviewSection.classList.add('hidden');
         rejectedSection.classList.add('hidden');
-         updateAllSection()
+        interviewActiveJobs.classList.add('hidden');
+        rejectedActiveJobs.classList.add('hidden');
+        jobsOf.classList.add('hidden');
         
-
     }
     else if (id == 'rejected-jobs-btn') {
         allCardSection.classList.add('hidden');
         interviewSection.classList.add('hidden');
         rejectedSection.classList.remove('hidden');
-
-
+        interviewActiveJobs.classList.add('hidden');
+        rejectedActiveJobs.classList.remove('hidden');
+        jobsOf.classList.remove('hidden')
         renderingRejected();
         updateRejectedSection()
 
@@ -89,6 +105,7 @@ mainContainer.addEventListener("click", function (event) {
             card.remove()
             calculateCount()
         }
+        
     }
     if(allJobsBtn){
         updateAllSection()
@@ -170,7 +187,7 @@ mainContainer.addEventListener("click", function (event) {
             updateInterviewSection();
 
         }
-
+        
         calculateCount();
         // renderingRejected();
     }
