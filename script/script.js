@@ -71,7 +71,6 @@ function toggoleStyle(id) {
 
     else if (id == 'all-jobs-btn') {
         allCardSection.classList.remove('hidden');
-         allAvailablejobs.classList.remove('hidden')
         interviewSection.classList.add('hidden');
         rejectedSection.classList.add('hidden');
         interviewActiveJobs.classList.add('hidden');
